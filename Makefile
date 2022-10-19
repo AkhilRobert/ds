@@ -1,5 +1,5 @@
 CC=clang
-TARGET=queue
+TARGET=linked
 
 all:
 	$(CC) $(TARGET).c -o main
