@@ -82,14 +82,34 @@ void deleteAtPos(int pos) {
 
     if (current == head) {
         head = head->next;
-        printf("head");
     } else {
         previous->next = current->next;
-        printf("other");
     }
 }
 
-void insertAtPos(int pos) {}
+void insertAtPos(int pos, int element) {
+    node_t *current = head;
+    node_t *previous = NULL;
+    node_t *new = (node_t *)malloc(sizeof(node_t));
+    new->value = element;
+    new->pos = head->pos + 1;
+
+    if (isEmpty()) {
+        return;
+    }
+
+    while (current->pos != pos) {
+        if (current->next == NULL) {
+            return;
+        } else {
+            previous = current;
+            current = current->next;
+        }
+    }
+
+    previous->next = new;
+    new->next = current;
+}
 
 int main() {
     create(12);
@@ -97,8 +117,8 @@ int main() {
     create(15);
     create(16);
     display();
-    deleteAtPos(1);
-    deleteAtPos(0);
+    insertAtPos(1, 2000);
+    insertAtPos(4, 4000);
     printf("==============\n");
     display();
     return 0;
