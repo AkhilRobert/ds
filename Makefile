@@ -1,5 +1,5 @@
 CC=clang
-TARGET=stack
+TARGET=queue
 
 all:
 	$(CC) $(TARGET).c -o main
