@@ -24,7 +24,7 @@ stack createStack(int size) {
     s = (stack)malloc(sizeof(stack));
     s->capacity = size;
     s->top = EMPTYTOP;
-    s->array = (int *)malloc(sizeof(stack) * size);
+    s->array = (int *)malloc(sizeof(int) * size);
 
     return s;
 }
