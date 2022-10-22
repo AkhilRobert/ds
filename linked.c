@@ -11,7 +11,7 @@ struct Node {
 
 node_t *head = NULL;
 
-void create(int value) {
+void insertFirst(int value) {
     node_t *result = (node_t *)malloc(sizeof(node_t));
     result->value = value;
     result->next = head;
@@ -60,6 +60,23 @@ node_t *findByValue(int value) {
     printf("Found at the position %d", pos);
 
     return current;
+}
+
+node_t *findByPos(int pos_to_find) {
+    node_t *current = head;
+    node_t *found = NULL;
+    int current_pos = 0;
+
+    while (current_pos != pos_to_find) {
+        if (current->next == NULL)
+            return NULL;
+
+        current = current->next;
+        found = current;
+        current_pos++;
+    }
+
+    return found;
 }
 
 void deleteAtPos(int pos) {
@@ -113,10 +130,10 @@ void insertAtPos(int pos, int element) {
 }
 
 int main() {
-    create(12);
-    create(14);
-    create(15);
-    create(16);
+    insertFirst(12);
+    insertFirst(14);
+    insertFirst(15);
+    insertFirst(16);
     display();
     insertAtPos(1, 2000);
     insertAtPos(1, 5000);
@@ -125,5 +142,12 @@ int main() {
     insertAtPos(4, 4000);
     printf("==============\n");
     display();
+
+    node_t *value = findByPos(2);
+    if (value == NULL)
+        printf("Not found\n");
+    else
+        printf("The current value is %d\n", value->value);
+
     return 0;
 }
