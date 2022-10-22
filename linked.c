@@ -6,7 +6,6 @@ typedef struct Node node_t;
 
 struct Node {
     int value;
-    int pos;
     node_t *next;
 };
 
@@ -16,11 +15,6 @@ void create(int value) {
     node_t *result = (node_t *)malloc(sizeof(node_t));
     result->value = value;
     result->next = head;
-    if (head == NULL) {
-        result->pos = 0;
-    } else {
-        result->pos = head->pos + 1;
-    }
     head = result;
 }
 
@@ -38,27 +32,32 @@ void deleteFirst() {
 
 void display() {
     node_t *ptr = head;
+    int pos = 0;
     while (ptr != NULL) {
-        printf("%d, %d\n", ptr->value, ptr->pos);
+        printf("%d, %d\n", ptr->value, pos);
         ptr = ptr->next;
+        pos++;
     }
 }
 
-node_t *findAtPos(int pos) {
+node_t *findByValue(int value) {
     node_t *current = head;
+    int pos = 0;
 
     // There is no items
     if (isEmpty()) {
         return NULL;
     }
 
-    while (current->pos != pos) {
+    while (current->value != value) {
         if (current->next == NULL) {
             return NULL;
-        } else {
-            current = current->next;
         }
+        current = current->next;
+        pos++;
     }
+
+    printf("Found at the position %d", pos);
 
     return current;
 }
@@ -66,18 +65,19 @@ node_t *findAtPos(int pos) {
 void deleteAtPos(int pos) {
     node_t *current = head;
     node_t *previous = NULL;
+    int current_pos = 0;
 
     if (isEmpty()) {
         return;
     }
 
-    while (current->pos != pos) {
+    while (current_pos != pos) {
         if (current->next == NULL) {
             return;
-        } else {
-            previous = current;
-            current = current->next;
         }
+        previous = current;
+        current = current->next;
+        current_pos++;
     }
 
     if (current == head) {
@@ -91,20 +91,21 @@ void insertAtPos(int pos, int element) {
     node_t *current = head;
     node_t *previous = NULL;
     node_t *new = (node_t *)malloc(sizeof(node_t));
+    int current_pos = 0;
+
     new->value = element;
-    new->pos = head->pos + 1;
 
     if (isEmpty()) {
         return;
     }
 
-    while (current->pos != pos) {
+    while (current_pos != pos) {
         if (current->next == NULL) {
             return;
-        } else {
-            previous = current;
-            current = current->next;
         }
+        previous = current;
+        current = current->next;
+        current_pos++;
     }
 
     previous->next = new;
@@ -118,6 +119,9 @@ int main() {
     create(16);
     display();
     insertAtPos(1, 2000);
+    insertAtPos(1, 5000);
+    deleteAtPos(1);
+    deleteAtPos(1);
     insertAtPos(4, 4000);
     printf("==============\n");
     display();
