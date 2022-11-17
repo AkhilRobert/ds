@@ -125,7 +125,10 @@ void insertAtPos(int pos, int element) {
         current_pos++;
     }
 
-    previous->next = new;
+    if (previous)
+        previous->next = new;
+    else
+        head = new;
     new->next = current;
 }
 
@@ -137,6 +140,7 @@ int main() {
     display();
     insertAtPos(1, 2000);
     insertAtPos(1, 5000);
+    insertAtPos(0, 333);
     deleteAtPos(1);
     deleteAtPos(1);
     insertAtPos(4, 4000);
