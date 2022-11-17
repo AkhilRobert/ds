@@ -52,11 +52,40 @@ void deleteAtPos(int pos) {
     free(current);
 }
 
+void insertAtPos(int pos, int value) {
+    node_t *current = head;
+    int current_pos = 0;
+
+    node_t *node = (node_t *)malloc(sizeof(node_t));
+    node->value = value;
+
+    while (current_pos != pos) {
+        if (current->next == NULL) {
+            printf("Position overflow");
+            return;
+        }
+
+        current = current->next;
+        current_pos++;
+    }
+
+    node->prev = current->prev;
+    node->next = current;
+    if (current->prev != NULL) {
+        current->prev->next = node;
+    } else {
+        head = node;
+    }
+    current->prev = node;
+}
+
 void display() {
     node_t *current = head;
+    int pos = 0;
     while (current != NULL) {
-        printf("%d - ", current->value);
+        printf("(i: %d, v: %d) - ", pos, current->value);
         current = current->next;
+        pos++;
     }
     printf("\n");
 }
@@ -73,5 +102,16 @@ int main() {
     deleteAtPos(2);
 
     display();
+
+    insertAtPos(1, 300);
+    insertAtPos(1, 300);
+    insertAtPos(0, 70000);
+    insertAtPos(2, 6000);
+
+    display();
+
+    insertAtPos(3, 222);
+    display();
+
     return 0;
 }
