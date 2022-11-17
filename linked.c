@@ -12,10 +12,10 @@ struct Node {
 node_t *head = NULL;
 
 void insertFirst(int value) {
-    node_t *result = (node_t *)malloc(sizeof(node_t));
-    result->value = value;
-    result->next = head;
-    head = result;
+    node_t *node = (node_t *)malloc(sizeof(node_t));
+    node->value = value;
+    node->next = head;
+    head = node;
 }
 
 bool isEmpty() { return head == NULL; }

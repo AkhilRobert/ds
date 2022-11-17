@@ -1,9 +1,10 @@
 CC=clang
-TARGET=linked
+TARGET=d-linked
+# FLAGS=-Wall -Werror -Wshadow 
 
 all:
-	$(CC) $(TARGET).c -o main
+	$(CC) $(TARGET).c -o main 
 	./main
 
 clean:
-	rm $(TARGET)
+	rm main
