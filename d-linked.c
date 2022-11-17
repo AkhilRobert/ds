@@ -79,6 +79,25 @@ void insertAtPos(int pos, int value) {
     current->prev = node;
 }
 
+node_t *findByValue(int value) {
+    node_t *answer = head;
+    int pos = 0;
+
+    while (answer->value != value) {
+        if (answer->next == NULL) {
+            printf("Node with the value %d is not found", value);
+            return NULL;
+        }
+
+        answer = answer->next;
+        pos++;
+    }
+
+    printf("Found at the position %d", pos);
+
+    return answer;
+}
+
 void display() {
     node_t *current = head;
     int pos = 0;
@@ -112,6 +131,8 @@ int main() {
 
     insertAtPos(3, 222);
     display();
+
+    findByValue(222);
 
     return 0;
 }

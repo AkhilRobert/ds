@@ -1,5 +1,5 @@
 CC=clang
-TARGET=linked
+TARGET=d-linked
 # FLAGS=-Wall -Werror -Wshadow 
 
 all:
