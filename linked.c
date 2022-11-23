@@ -18,7 +18,9 @@ void insertFirst(int value) {
     head = node;
 }
 
-bool isEmpty() { return head == NULL; }
+bool isEmpty() {
+    return head == NULL;
+}
 
 void deleteFirst() {
     if (isEmpty()) {

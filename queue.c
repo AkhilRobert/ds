@@ -9,9 +9,13 @@ struct QueueRecord {
     int *array;
 };
 
-bool isEmpty(queue q) { return q->rear == -1 && q->front == -1; }
+bool isEmpty(queue q) {
+    return q->rear == -1 && q->front == -1;
+}
 
-bool isFull(queue q) { return q->rear == q->capacity - 1; }
+bool isFull(queue q) {
+    return q->rear == q->capacity - 1;
+}
 
 void makeEmpty(queue q) {
     q->front = -1;
@@ -74,9 +78,13 @@ void display(queue q) {
     }
 }
 
-void front(queue q) { printf("The front is %d", q->array[q->front]); }
+void front(queue q) {
+    printf("The front is %d", q->array[q->front]);
+}
 
-void rear(queue q) { printf("The rear is %d", q->array[q->rear]); }
+void rear(queue q) {
+    printf("The rear is %d", q->array[q->rear]);
+}
 
 int main() {
     queue q = createQueue(5);
