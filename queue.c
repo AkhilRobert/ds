@@ -26,7 +26,10 @@ queue createQueue(int capacity) {
         return NULL;
     }
 
-    q = (queue)malloc(sizeof(queue));
+    // Size of the pointer cannot be found during the compile time
+    // so using sizeof(pointer) is bad
+    // q = (queue)malloc(sizeof(queue)); --> This is bad
+    q = (queue)malloc(sizeof(struct QueueRecord));
     q->front = -1;
     q->rear = -1;
     q->capacity = capacity;
@@ -87,5 +90,6 @@ int main() {
     front(q);
     rear(q);
     makeEmpty(q);
+    dequeue(q);
     display(q);
 }

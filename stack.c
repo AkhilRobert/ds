@@ -21,7 +21,10 @@ stack createStack(int size) {
         return NULL;
     }
 
-    s = (stack)malloc(sizeof(stack));
+    // Size of the pointer cannot be found during the compile time
+    // so using sizeof(pointer) is bad
+    // s = (queue)malloc(sizeof(stack)); --> This is bad
+    s = (stack)malloc(sizeof(struct StackRecord));
     s->capacity = size;
     s->top = EMPTYTOP;
     s->array = (int *)malloc(sizeof(int) * size);
