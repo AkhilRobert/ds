@@ -1,5 +1,5 @@
 CC=clang
-TARGET=linked_queue
+TARGET=queue
 # FLAGS=-Wall -Werror -Wshadow 
 
 all:

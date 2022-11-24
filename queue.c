@@ -86,18 +86,23 @@ void rear(queue q) {
     printf("The rear is %d", q->array[q->rear]);
 }
 
+void reverse(queue q) {
+    int i = q->front, j = q->rear;
+    while (i < j) {
+        int temp = q->array[i];
+        q->array[i] = q->array[j];
+        q->array[j] = temp;
+        i++;
+        j--;
+    }
+}
+
 int main() {
     queue q = createQueue(5);
     enqueue(q, 12);
     enqueue(q, 13);
     enqueue(q, 16);
     display(q);
-    dequeue(q);
-    display(q);
-    enqueue(q, 307);
-    front(q);
-    rear(q);
-    makeEmpty(q);
-    dequeue(q);
+    reverse(q);
     display(q);
 }
