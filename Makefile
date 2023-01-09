@@ -1,5 +1,5 @@
 CC=clang
-TARGET=queue
+TARGET=bst
 # FLAGS=-Wall -Werror -Wshadow 
 
 all:

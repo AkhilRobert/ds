@@ -32,9 +32,13 @@ stack createStack(int size) {
     return s;
 }
 
-bool isEmpty(stack s) { return s->top == EMPTYTOP; }
+bool isEmpty(stack s) {
+    return s->top == EMPTYTOP;
+}
 
-bool isFull(stack s) { return s->top == s->capacity - 1; }
+bool isFull(stack s) {
+    return s->top == s->capacity - 1;
+}
 
 void push(stack s, int element) {
     if (isFull(s)) {
